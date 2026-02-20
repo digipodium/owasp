@@ -150,7 +150,7 @@ const Pricing = () => {
                 Complete Your Order
               </h2>
               <p className="text-gray-600 mb-6">
-                You've selected the <span className="font-semibold text-indigo-600">{selectedPlan}</span> plan
+                You have selected the <span className="font-semibold text-indigo-600">{selectedPlan}</span> plan
               </p>
 
               <form onSubmit={formik.handleSubmit} className="space-y-5">
