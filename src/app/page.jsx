@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScannerForm from '../components/ScannerForm';
 import ResultsDisplay from '../components/ResultsDisplay';
+import { owaspRisks } from '../constants/owaspRisks';
 
 export default function Home() {
   const [scanResults, setScanResults] = useState(null);
@@ -58,6 +59,41 @@ export default function Home() {
               </div>
             )}
           </div>
+
+          {/* OWASP Top 10 Guide Section */}
+          {!scanResults && !isScanning && (
+            <div className="mt-40 animate-in fade-in duration-1000">
+              <div className="flex items-center gap-4 mb-10">
+                <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-slate-800"></div>
+                <h2 className="text-3xl font-black text-white">OWASP Top 10 Reference</h2>
+                <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-slate-800"></div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                {owaspRisks.map((risk) => (
+                  <div key={risk.id} className="glass-panel p-5 rounded-2xl border border-slate-800/50 hover:border-emerald-500/30 transition-all hover:-translate-y-1 group">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-emerald-500 font-mono font-bold text-xs">{risk.id}</span>
+                      <div className="w-2 h-2 rounded-full bg-slate-700 group-hover:bg-emerald-500 transition-colors"></div>
+                    </div>
+                    <h3 className="text-sm font-bold text-slate-200 mb-2">{risk.title}</h3>
+                    <p className="text-[10px] text-slate-500 leading-relaxed line-clamp-3 group-hover:text-slate-400">
+                      {risk.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <a href="/owasp-top-10" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors">
+                  Learn more in our full documentation
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          )}
 
         </div>
       </main>
